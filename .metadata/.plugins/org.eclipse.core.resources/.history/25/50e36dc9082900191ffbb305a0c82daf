@@ -1,0 +1,52 @@
+package com.studentmanagement.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.studentmanagement.Service.StudentService;
+import com.studentmanagement.entity.Student;
+import com.studentmanagement.repositories.StudentRepository;
+
+
+@Controller
+public class StudentController {
+
+    @Autowired
+    StudentService studentService;
+
+    @GetMapping("/showstudents")
+    public String showPage(Model model) {
+        model.addAttribute("data", studentService.listStudents());
+        return "index";
+    }
+
+    @GetMapping("/AddStudents.html")
+    public String showPage1(Model model)
+    {
+       model.addAttribute("stud", new Student());
+        return "AddStudents";
+    }
+
+    @PostMapping("/save")
+    public String saveStudents(@ModelAttribute Student stud) {
+        studentService.save(stud);
+        return "redirect:/showstudents";
+
+    }
+    
+    @DeleteMapping(value="/students/{id}")
+    public void deleteStudent(@PathVariable long id) {
+    	studentService.delete(id);
+    }
+    
+    @GetMapping("/allstudents")
+    public Iterable<Students>
+      
+
+}

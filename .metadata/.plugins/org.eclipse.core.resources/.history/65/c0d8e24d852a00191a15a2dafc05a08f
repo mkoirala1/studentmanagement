@@ -1,0 +1,13 @@
+package com.example.demo.coach;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Coaches {
+
+@Value("${coach.name}")
+private String coachName;
+private String reamName;
+
+}

@@ -1,0 +1,45 @@
+package com.example.demo.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.Employee;
+import com.example.demo.repositories.EmployeeRepositories;
+
+
+@Repository
+public class EmployeeDAOHibernateImp implements EmployeeDAO {
+
+	private EmployeeRepositories employeeRepo;
+	
+	@Override
+	public List<Employee> findAll() {
+	List<Employee> emp=new ArrayList<>();
+	employeeRepo.findAll().forEach(emp::add);
+	return emp;
+
+
+	}
+
+	@Override
+	public Employee findById(int theId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(Employee theemployee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteById(int theId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

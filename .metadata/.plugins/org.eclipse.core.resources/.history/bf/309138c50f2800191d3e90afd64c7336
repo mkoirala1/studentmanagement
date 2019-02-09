@@ -1,0 +1,14 @@
+package com.example.demo.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/post")
+public class PostController {
+	
+	public String listPost(Model model) {
+		return "post/List";
+	}
+}

@@ -1,0 +1,8 @@
+package com.example.domain;
+
+import javax.persistance.Entity
+
+@Entity
+public class Post {
+
+}

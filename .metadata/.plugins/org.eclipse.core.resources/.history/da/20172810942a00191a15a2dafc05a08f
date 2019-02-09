@@ -1,0 +1,47 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.dao.EmployeeDAO;
+import com.example.demo.entity.Employee;
+
+@Service
+public class EmployeeServiceIml implements EmployeeService {
+
+	private EmployeeDAO employeeDAO;
+	public EmployeeServiceIml(EmployeeDAO theemployeeDAO) {
+		employeeDAO=theemployeeDAO;
+	}
+	
+	@Override
+	@Transactional
+	public List<Employee> findAll() {
+
+		return employeeDAO.findAll();
+	}
+
+	@Override
+	@Transactional
+	public Employee findById(int theId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@Transactional
+	public void save(Employee theEmployee) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	@Transactional
+	public void deleteById(int theId) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

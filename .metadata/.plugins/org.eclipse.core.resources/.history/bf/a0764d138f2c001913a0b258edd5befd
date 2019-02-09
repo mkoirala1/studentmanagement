@@ -1,0 +1,80 @@
+package com.studentmanagement.controllers;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.studentmanagement.Service.StudentService;
+import com.studentmanagement.entity.Student;
+import com.studentmanagement.repositories.StudentRepository;
+
+
+@RestController
+public class StudentController {
+
+    @Autowired
+    StudentService studentService;
+    
+    @Autowired
+    StudentRepository studentRepository;
+/*
+    @GetMapping("/showstudents")
+    public String showPage(Model model) {
+        model.addAttribute("data", studentService.listStudents());
+        return "index";
+    }
+    */
+    
+    @GetMapping("/student/{id}")
+    public Optional<Student> getStudent(@PathVariable int id) {
+    	return studentRepository.findById(id);
+    }
+    
+/*
+    @GetMapping("/AddStudents.html")
+    public String showPage1(Model model)
+    {
+       model.addAttribute("stud", new Student());
+        return "AddStudents";
+    }
+studentRepository
+    
+    */
+    @PostMapping("/save")
+    public Student saveStudents(Student stud) {
+    return studentRepository.save(stud);
+       
+
+    }
+   
+    
+    @DeleteMapping(value="/students/{id}")
+    public void deleteStudent(@PathVariable int id) {
+    	studentRepository.deleteById(id);
+    }
+    
+    
+    
+    
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student thestudent) {
+    return	studentRepository.save(thestudent);
+
+    }
+    
+    @GetMapping("/students")
+    public List<Student> getStudents() {
+        return studentService.listStudents();
+    }
+    
+      
+
+}

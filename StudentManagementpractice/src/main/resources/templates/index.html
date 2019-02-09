@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>All Students</title>
+<meta charset="UTF-8"/>
+<link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link   rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" 
+        crossorigin="anonymous"></script>
+ 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        
+</head>
+<body>
+	<div class="container">
+	<div class="col-md-8">
+	<h1>Students</h1>
+	<div class="pull-right">
+	<p>
+	  <a href="AddStudents.html" class="btn btn-primary"><span class="glyphicon glyphicon-plus">Add</span></a>
+	</p>
+	</div> 
+		
+		<table class="table table-striped table-hover table-bordered table-sm ">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+					<th>Address</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student:${data}">
+                    <td th:text="${student.id}">Id</td>				
+					<td th:text="${student.fName}">First Name</td>
+					<td th:text="${student.lName}">Last Name</td>
+					<td th:text="${student.email}">Email</td>
+					<td th:text="${student.phone}">Phones</td>
+					<td th:text="${student.address}">Address</td>
+				</tr>
+
+
+			</tbody>
+
+		</table>
+</div>
+
+	</div>
+
+</body>
+</html>

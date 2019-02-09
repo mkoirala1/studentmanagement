@@ -1,0 +1,68 @@
+package com.studentmanagement.controllers;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.studentmanagement.Service.StudentService;
+import com.studentmanagement.entity.Student;
+import com.studentmanagement.repositories.StudentRepository;
+
+
+@Controller
+public class StudentController {
+
+    @Autowired
+    StudentService studentService;
+    
+    @Autowired
+    StudentRepository studentRepository;
+
+    @GetMapping("/showstudents")
+    public String showPage(Model model) {
+        model.addAttribute("data", studentService.listStudents());
+        return "index";
+    }
+    
+    @GetMapping("/student/{id}")
+    public Optional<Student> getStudent(@PathVariable long id) {
+    	return studentService.getStudentById((int) id);
+    }
+
+    @GetMapping("/AddStudents.html")
+    public String showPage1(Model model)
+    {
+       model.addAttribute("stud", new Student());
+        return "AddStudents";
+    }
+
+    @PostMapping("/save")
+    public String saveStudents(@ModelAttribute Student stud) {
+        studentService.save(stud);
+        return "redirect:/showstudents";
+
+    }
+    
+    @DeleteMapping(value="/students/{id}")
+    public void deleteStudent(@PathVariable int id) {
+    	studentRepository.deleteById(id);
+    }
+    
+    
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student thestudent) {
+    return	studentRepository.save(thestudent);
+
+    }
+      
+
+}
